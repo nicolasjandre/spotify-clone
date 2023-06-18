@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Animated, Image, Text, TouchableWithoutFeedback, View } from "react-native";
 import { styles } from "./styles";
 import { GreenButton } from "../../components/GreenButton";
 import { TransparentButton } from "../../components/TransparentButton";
@@ -8,6 +8,27 @@ export function Login() {
   const phoneIcon = require("../../../assets/phone.png");
   const googleIcon = require("../../../assets/google.png");
   const facebookIcon = require("../../../assets/facebook.webp");
+  const animatedValue = new Animated.Value(1);
+
+  const animatedStyle = {
+    transform: [{ scale: animatedValue }],
+  };
+
+  function handlePressIn() {
+    Animated.spring(animatedValue, {
+      toValue: 0.90,
+      speed: 4000,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  function handlePressOut() {
+    Animated.spring(animatedValue, {
+      toValue: 1,
+      speed: 4000,
+      useNativeDriver: true,
+    }).start();
+  }
 
   return (
     <View style={styles.container}>
@@ -19,7 +40,9 @@ export function Login() {
         <TransparentButton src={phoneIcon} title="Continue with phone number" />
         <TransparentButton src={googleIcon} title="Continue with Google" />
         <TransparentButton src={facebookIcon} title="Continue with Facebook" />
-        <Text style={styles.textLogin}>Log in</Text>
+        <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
+          <Animated.Text style={[styles.textLogin, animatedStyle]}>Log in</Animated.Text>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   );
