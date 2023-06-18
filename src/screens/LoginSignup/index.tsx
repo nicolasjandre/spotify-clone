@@ -43,10 +43,10 @@ export function LoginSignup() {
       <Text style={styles.text}>Millions of songs.</Text>
       <Text style={styles.text}>Free on Spotify.</Text>
       <View style={styles.buttonsWrapper}>
-        <ColorButton defaultBgColor="#1db954" pressedBgColor="#1d5705" title="Sign up free" />
-        <TransparentButton src={phoneIcon} title="Continue with phone number" />
-        <TransparentButton src={googleIcon} title="Continue with Google" />
-        <TransparentButton src={facebookIcon} title="Continue with Facebook" />
+        <ColorButton fontColor="#121212" defaultBgColor="#1db954" pressedBgColor="#1d5705" title="Sign up free" />
+        <TransparentButton height={50} fontSize={16} src={phoneIcon} title="Continue with phone number" />
+        <TransparentButton height={50} fontSize={16} src={googleIcon} title="Continue with Google" />
+        <TransparentButton height={50} fontSize={16} src={facebookIcon} title="Continue with Facebook" />
         <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
           <Animated.Text style={[styles.textLogin, animatedStyle]}>Log in</Animated.Text>
         </TouchableWithoutFeedback>

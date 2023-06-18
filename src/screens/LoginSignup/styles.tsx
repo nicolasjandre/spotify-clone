@@ -26,6 +26,6 @@ export const styles = StyleSheet.create({
     color: "#ffffff",
     fontWeight: "bold",
     fontSize: 16,
-    padding: 11
+    padding: 9
   },
 });
