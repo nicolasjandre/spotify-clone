@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   transparentButton: {
     width: "84%",
-    height: 50,
     borderRadius: 40,
     borderColor: "#b3b3b3",
     borderStyle: "solid",

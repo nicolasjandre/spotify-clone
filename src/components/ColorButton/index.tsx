@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { styles } from "./styles";
-import { ImageSourcePropType, Animated, TouchableWithoutFeedback, Text } from "react-native";
+import { Animated, TouchableWithoutFeedback, Text } from "react-native";
 
 interface TransparentButtonProps {
   title: string;
+  defaultBgColor: string;
+  pressedBgColor: string;
+  fontColor: string;
 }
 
-export function GreenButton({ title }: TransparentButtonProps) {
-  const [backgroundColor, setBackgroundColor] = useState<string>("#1db954");
+export function ColorButton({ title, defaultBgColor, pressedBgColor, fontColor }: TransparentButtonProps) {
+  const [backgroundColor, setBackgroundColor] = useState<string>(defaultBgColor);
   const animatedValue = new Animated.Value(1);
 
   const animatedStyle = {
@@ -16,7 +19,7 @@ export function GreenButton({ title }: TransparentButtonProps) {
   };
 
   useEffect(() => {
-    if (backgroundColor === "#1d5705") {
+    if (backgroundColor === pressedBgColor) {
       Animated.spring(animatedValue, {
         toValue: 0.95,
         speed: 4000,
@@ -32,17 +35,17 @@ export function GreenButton({ title }: TransparentButtonProps) {
   }, [backgroundColor]);
 
   function handlePressIn() {
-    setBackgroundColor("#1d5705");
+    setBackgroundColor(pressedBgColor);
   }
 
   function handlePressOut() {
-    setBackgroundColor("#1db954");
+    setBackgroundColor(defaultBgColor);
   }
 
   return (
     <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
       <Animated.View style={[styles.greenButton, animatedStyle]}>
-        <Text style={styles.text}>{title}</Text>
+        <Text style={[styles.text, {color: fontColor}]}>{title}</Text>
       </Animated.View>
     </TouchableWithoutFeedback>
   );

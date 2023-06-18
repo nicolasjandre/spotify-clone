@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: "#121212",
     fontWeight: "bold",
     fontSize: 16,
   },

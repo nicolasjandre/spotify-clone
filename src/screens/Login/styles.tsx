@@ -3,29 +3,26 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    backgroundColor: "#121212",
+    padding: 16,
+    paddingTop: "13.5%",
   },
   text: {
     color: "#ffffff",
     fontWeight: "bold",
-    fontSize: 40,
+    fontSize: 34,
   },
-  image: {
-    width: 70,
-    height: 70,
-    marginTop: "44%",
-    marginBottom: "22%",
-  },
-  buttonsWrapper: {
-    alignItems: "center",
-    width: "100%",
-    gap: 8,
-    marginTop: "20%",
-  },
-  textLogin: {
+  textInput: {
+    height: 48,
+    borderRadius: 5,
     color: "#ffffff",
-    fontWeight: "bold",
-    fontSize: 16,
-    marginTop: "3%",
+    fontSize: 15,
+    padding: 6,
   },
+  eyeIconContainer: {
+    color: "#ffffff",
+    position: "absolute",
+    top: 90,
+    right: 10
+  }
 });

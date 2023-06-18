@@ -4,10 +4,12 @@ import { styles } from "./styles";
 
 interface TransparentButtonProps {
   title: string;
-  src: ImageSourcePropType;
+  src?: ImageSourcePropType;
+  height: number;
+  fontSize: number;
 }
 
-export function TransparentButton({ title, src }: TransparentButtonProps) {
+export function TransparentButton({ title, src, fontSize, height }: TransparentButtonProps) {
   const [backgroundColor, setBackgroundColor] = useState<string>("transparent");
   const animatedValue = new Animated.Value(1);
 
@@ -41,9 +43,9 @@ export function TransparentButton({ title, src }: TransparentButtonProps) {
 
   return (
     <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
-      <Animated.View style={[styles.transparentButton, animatedStyle]}>
-        <Image style={styles.image} source={src} />
-        <Text style={styles.text}>{title}</Text>
+      <Animated.View style={[styles.transparentButton, animatedStyle, {height: height}]}>
+        {src && <Image style={styles.image} source={src} />}
+        <Text style={[styles.text, { fontSize: fontSize }]}>{title}</Text>
       </Animated.View>
     </TouchableWithoutFeedback>
   );

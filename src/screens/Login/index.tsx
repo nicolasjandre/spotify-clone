@@ -1,48 +1,89 @@
-import React from "react";
-import { Animated, Image, Text, TouchableWithoutFeedback, View } from "react-native";
+import React, { useState } from "react";
 import { styles } from "./styles";
-import { GreenButton } from "../../components/GreenButton";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ColorButton } from "../../components/ColorButton";
 import { TransparentButton } from "../../components/TransparentButton";
 
 export function Login() {
-  const phoneIcon = require("../../../assets/phone.png");
-  const googleIcon = require("../../../assets/google.png");
-  const facebookIcon = require("../../../assets/facebook.webp");
-  const animatedValue = new Animated.Value(1);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState<boolean>(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState<boolean>(false);
 
-  const animatedStyle = {
-    transform: [{ scale: animatedValue }],
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
   };
 
-  function handlePressIn() {
-    Animated.spring(animatedValue, {
-      toValue: 0.90,
-      speed: 4000,
-      useNativeDriver: true,
-    }).start();
-  }
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+  };
 
-  function handlePressOut() {
-    Animated.spring(animatedValue, {
-      toValue: 1,
-      speed: 4000,
-      useNativeDriver: true,
-    }).start();
-  }
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
+  const handleEmailFocus = () => {
+    setIsEmailFocused(true);
+  };
+
+  const handleEmailBlur = () => {
+    setIsEmailFocused(false);
+  };
+
+  const handlePasswordFocus = () => {
+    setIsPasswordFocused(true);
+  };
+
+  const handlePasswordBlur = () => {
+    setIsPasswordFocused(false);
+  };
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../../../assets/spotify-icon.png")} />
-      <Text style={styles.text}>Millions of songs.</Text>
-      <Text style={styles.text}>Free on Spotify.</Text>
-      <View style={styles.buttonsWrapper}>
-        <GreenButton title="Sign up free" />
-        <TransparentButton src={phoneIcon} title="Continue with phone number" />
-        <TransparentButton src={googleIcon} title="Continue with Google" />
-        <TransparentButton src={facebookIcon} title="Continue with Facebook" />
-        <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
-          <Animated.Text style={[styles.textLogin, animatedStyle]}>Log in</Animated.Text>
-        </TouchableWithoutFeedback>
+      <AntDesign style={{ marginBottom: "6%" }} name="arrowleft" size={24} color="#ffffff" />
+      <View>
+        <Text style={styles.text}>Email or username</Text>
+        <TextInput
+          selectionColor="#ffffff"
+          style={[styles.textInput, { backgroundColor: isEmailFocused ? "#828282" : "#474747" }]}
+          onChangeText={handleEmailChange}
+          onFocus={handleEmailFocus}
+          onBlur={handleEmailBlur}
+          autoCapitalize="none"
+        />
+      </View>
+      <View style={{ position: "relative" }}>
+        <Text style={[styles.text, { marginTop: "9%" }]}>Password</Text>
+        <TextInput
+          selectionColor="#ffffff"
+          style={[styles.textInput, { backgroundColor: isPasswordFocused ? "#828282" : "#474747" }]}
+          onChangeText={handlePasswordChange}
+          onFocus={handlePasswordFocus}
+          onBlur={handlePasswordBlur}
+          secureTextEntry={isPasswordVisible}
+        />
+        <TouchableOpacity style={styles.eyeIconContainer} onPress={togglePasswordVisibility}>
+          <MaterialCommunityIcons name={!isPasswordVisible ? "eye-off" : "eye"} size={25} color="white" />
+        </TouchableOpacity>
+      </View>
+
+      <View style={{ alignItems: "center", marginTop: "13%" }}>
+        <View style={{ width: 130, alignItems: "center" }}>
+          <ColorButton
+            fontColor={email === "" || password === "" ? "rgba(1, 0, 0, 0.4)" : "#121212"}
+            defaultBgColor={email === "" || password === "" ? "#606060" : "#ffffff"}
+            pressedBgColor={email === "" || password === "" ? "#606060" : "#b3b3b3"}
+            title="Log in"
+          />
+        </View>
+      </View>
+      <View style={{ alignItems: "center", marginTop: "9.5%" }}>
+        <View style={{ width: 200, alignItems: "center" }}>
+          <TransparentButton height={24} fontSize={12} title="Log in without password" />
+        </View>
       </View>
     </View>
   );
