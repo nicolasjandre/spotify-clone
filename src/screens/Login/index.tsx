@@ -73,6 +73,10 @@ export function Login() {
       <View style={{ alignItems: "center", marginTop: "13%" }}>
         <View style={{ width: 130, alignItems: "center" }}>
           <ColorButton
+            fontBold
+            fontSize={16}
+            width="84%"
+            height={50}
             fontColor={email === "" || password === "" ? "rgba(1, 0, 0, 0.4)" : "#121212"}
             defaultBgColor={email === "" || password === "" ? "#606060" : "#ffffff"}
             pressedBgColor={email === "" || password === "" ? "#606060" : "#b3b3b3"}

@@ -43,7 +43,16 @@ export function LoginSignup() {
       <Text style={styles.text}>Millions of songs.</Text>
       <Text style={styles.text}>Free on Spotify.</Text>
       <View style={styles.buttonsWrapper}>
-        <ColorButton fontColor="#121212" defaultBgColor="#1db954" pressedBgColor="#1d5705" title="Sign up free" />
+        <ColorButton
+          fontSize={16}
+          width="84%"
+          fontBold
+          height={50}
+          fontColor="#121212"
+          defaultBgColor="#1db954"
+          pressedBgColor="#1d5705"
+          title="Sign up free"
+        />
         <TransparentButton height={50} fontSize={16} src={phoneIcon} title="Continue with phone number" />
         <TransparentButton height={50} fontSize={16} src={googleIcon} title="Continue with Google" />
         <TransparentButton height={50} fontSize={16} src={facebookIcon} title="Continue with Facebook" />
