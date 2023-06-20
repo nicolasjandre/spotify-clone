@@ -44,7 +44,7 @@ export function TransparentButton({ title, src, fontSize, height, onPress }: Tra
 
   return (
     <TouchableWithoutFeedback onPress={onPress} onPressIn={handlePressIn} onPressOut={handlePressOut}>
-      <Animated.View style={[styles.transparentButton, animatedStyle, {height: height}]}>
+      <Animated.View style={[styles.transparentButton, animatedStyle, { height: height }]}>
         {src && <Image style={styles.image} source={src} />}
         <Text style={[styles.text, { fontSize: fontSize }]}>{title}</Text>
       </Animated.View>

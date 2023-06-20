@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "./styles";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -26,10 +26,6 @@ export function Login({ navigation }: LoginProps) {
 
   const handleNavigation = () => {
     navigation.navigate("BottomTab", { screen: "Home" });
-  };
-
-  const handleNormalLoginNavigation = () => {
-    if (email !== "" && password !== "") navigation.navigate("BottomTab", { screen: "Home" });
   };
 
   const handleEmailChange = (text: string) => {
@@ -82,7 +78,7 @@ export function Login({ navigation }: LoginProps) {
           onChangeText={handlePasswordChange}
           onFocus={handlePasswordFocus}
           onBlur={handlePasswordBlur}
-          secureTextEntry={isPasswordVisible}
+          secureTextEntry={!isPasswordVisible}
         />
         <TouchableOpacity style={styles.eyeIconContainer} onPress={togglePasswordVisibility}>
           <MaterialCommunityIcons name={!isPasswordVisible ? "eye-off" : "eye"} size={25} color="white" />
@@ -92,7 +88,7 @@ export function Login({ navigation }: LoginProps) {
       <View style={{ alignItems: "center", marginTop: "13%" }}>
         <View style={{ width: 130, alignItems: "center" }}>
           <ColorButton
-            onPress={handleNormalLoginNavigation}
+            onPress={handleNavigation}
             fontBold
             fontSize={16}
             width="84%"
@@ -100,6 +96,7 @@ export function Login({ navigation }: LoginProps) {
             fontColor={email === "" || password === "" ? "rgba(1, 0, 0, 0.4)" : "#121212"}
             defaultBgColor={email === "" || password === "" ? "#606060" : "#ffffff"}
             pressedBgColor={email === "" || password === "" ? "#606060" : "#b3b3b3"}
+            disabled={email === "" || password === ""}
             title="Log in"
           />
         </View>

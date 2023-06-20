@@ -14,9 +14,23 @@ interface TransparentButtonProps {
   paddingX?: number;
   fontBold?: boolean;
   onPress?: () => void;
+  disabled?: boolean;
 }
 
-export function ColorButton({ title, onPress, defaultBgColor, pressedBgColor, fontColor, fontSize, width, height, padding, paddingX, fontBold }: TransparentButtonProps) {
+export function ColorButton({
+  title,
+  onPress,
+  defaultBgColor,
+  pressedBgColor,
+  fontColor,
+  fontSize,
+  width,
+  height,
+  padding,
+  paddingX,
+  fontBold,
+  disabled,
+}: TransparentButtonProps) {
   const [backgroundColor, setBackgroundColor] = useState<string>(defaultBgColor);
   const animatedValue = new Animated.Value(1);
 
@@ -27,7 +41,7 @@ export function ColorButton({ title, onPress, defaultBgColor, pressedBgColor, fo
     height: height,
     padding: padding ? padding : 0,
     paddingRight: paddingX ? paddingX : 0,
-    paddingLeft: paddingX ? paddingX : 0
+    paddingLeft: paddingX ? paddingX : 0,
   };
 
   useEffect(() => {
@@ -46,6 +60,10 @@ export function ColorButton({ title, onPress, defaultBgColor, pressedBgColor, fo
     }
   }, [backgroundColor]);
 
+  useEffect(() => {
+    setBackgroundColor(defaultBgColor);
+  }, [defaultBgColor]);
+
   function handlePressIn() {
     setBackgroundColor(pressedBgColor);
   }
@@ -55,9 +73,14 @@ export function ColorButton({ title, onPress, defaultBgColor, pressedBgColor, fo
   }
 
   return (
-    <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
+    <TouchableWithoutFeedback disabled={disabled} onPressIn={handlePressIn} onPressOut={handlePressOut}>
       <Animated.View style={[styles.greenButton, animatedStyle]}>
-        <Text onPress={onPress} style={[{color: fontColor, fontSize: fontSize, fontWeight: fontBold ? "bold" : "normal"}]}>{title}</Text>
+        <Text
+          onPress={onPress}
+          style={[{ color: fontColor, fontSize: fontSize, fontWeight: fontBold ? "bold" : "normal" }]}
+        >
+          {title}
+        </Text>
       </Animated.View>
     </TouchableWithoutFeedback>
   );

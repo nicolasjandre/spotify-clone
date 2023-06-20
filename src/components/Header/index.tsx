@@ -7,8 +7,8 @@ export function Header() {
   const [greetings, setGreetings] = useState<string>("Good morning");
   
   useEffect(() => {
-    var today = new Date();
-    var curHr = today.getHours();
+    let today = new Date();
+    let curHr = today.getHours();
 
     if (curHr < 12) {
       setGreetings("Good morning");
