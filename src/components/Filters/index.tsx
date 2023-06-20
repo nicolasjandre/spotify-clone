@@ -1,5 +1,4 @@
-import { Text, View } from "react-native";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { View } from "react-native";
 import { styles } from "./styles";
 import { ColorButton } from "../ColorButton";
 

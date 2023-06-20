@@ -2,16 +2,19 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    marginTop: 24,
-    backgroundColor: "#121212",
+    height: 250,
   },
-  text: {
+  title: {
     color: "#ffffff",
-    width: "62%",
     fontSize: 24,
     fontWeight: "bold",
+    marginTop: "10%",
+    marginBottom: "4%"
   },
+  playlistName: {
+    color: "#ffffff",
+    maxWidth: 120,
+    fontWeight: "bold",
+    marginTop: 6,
+  }
 });
