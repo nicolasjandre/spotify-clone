@@ -3,13 +3,27 @@ import { Animated, Image, Text, TouchableWithoutFeedback, View } from "react-nat
 import { styles } from "./styles";
 import { ColorButton } from "../../components/ColorButton";
 import { TransparentButton } from "../../components/TransparentButton";
+import { NavigationProp } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 
-export function LoginSignup() {
+type BottomTabParamList = {
+  LoginSignUp: undefined;
+  Login: undefined;
+  Home: undefined;
+  Search: undefined;
+  YourLibrary: undefined;
+  Premium: undefined;
+};
+
+export function LoginSignup({ navigation }: { navigation: NavigationProp<BottomTabParamList, "LoginSignUp"> }) {
   const phoneIcon = require("../../../assets/phone.png");
   const googleIcon = require("../../../assets/google.png");
   const facebookIcon = require("../../../assets/facebook.webp");
   const animatedValue = new Animated.Value(1);
+
+  const handleNavigation = () => {
+    navigation.navigate("Login");
+  };
 
   const animatedStyle = {
     transform: [{ scale: animatedValue }],
@@ -57,7 +71,9 @@ export function LoginSignup() {
         <TransparentButton height={50} fontSize={16} src={googleIcon} title="Continue with Google" />
         <TransparentButton height={50} fontSize={16} src={facebookIcon} title="Continue with Facebook" />
         <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
-          <Animated.Text style={[styles.textLogin, animatedStyle]}>Log in</Animated.Text>
+          <Animated.Text onPress={handleNavigation} style={[styles.textLogin, animatedStyle]}>
+            Log in
+          </Animated.Text>
         </TouchableWithoutFeedback>
       </View>
     </LinearGradient>

@@ -244,7 +244,7 @@ export function Home() {
       <FlatList
         data={generalCollection}
         keyExtractor={(collection) => collection?.title}
-        showsVerticalScrollIndicator={false}
+        onScroll={() => {}}
         ListHeaderComponent={
           <>
             <Header />
@@ -255,7 +255,7 @@ export function Home() {
           return item.title === "Recently Played" ? (
             <RecentlyCollection collection={item} />
           ) : (
-            <GeneralCollection collection={item} index={index} lastItem={generalCollection.length} />
+            <GeneralCollection collection={item} index={index} lastItem={generalCollection?.length} />
           );
         }}
       />

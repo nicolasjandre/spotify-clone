@@ -5,8 +5,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    marginTop: 24,
     backgroundColor: "#121212",
+    paddingBottom: 7
   },
   text: {
     color: "#ffffff",

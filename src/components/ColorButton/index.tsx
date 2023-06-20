@@ -13,9 +13,10 @@ interface TransparentButtonProps {
   padding?: number;
   paddingX?: number;
   fontBold?: boolean;
+  onPress?: () => void;
 }
 
-export function ColorButton({ title, defaultBgColor, pressedBgColor, fontColor, fontSize, width, height, padding, paddingX, fontBold }: TransparentButtonProps) {
+export function ColorButton({ title, onPress, defaultBgColor, pressedBgColor, fontColor, fontSize, width, height, padding, paddingX, fontBold }: TransparentButtonProps) {
   const [backgroundColor, setBackgroundColor] = useState<string>(defaultBgColor);
   const animatedValue = new Animated.Value(1);
 
@@ -56,7 +57,7 @@ export function ColorButton({ title, defaultBgColor, pressedBgColor, fontColor, 
   return (
     <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
       <Animated.View style={[styles.greenButton, animatedStyle]}>
-        <Text style={[{color: fontColor, fontSize: fontSize, fontWeight: fontBold ? "bold" : "normal"}]}>{title}</Text>
+        <Text onPress={onPress} style={[{color: fontColor, fontSize: fontSize, fontWeight: fontBold ? "bold" : "normal"}]}>{title}</Text>
       </Animated.View>
     </TouchableWithoutFeedback>
   );
